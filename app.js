@@ -1,49 +1,10 @@
-const cycleDefinitions = [
+const evaluations = [
   {
-    key: "PASEC2014",
-    label: "PASEC2014",
-    year: "2014",
-    description: "Évaluation internationale sur 10 pays avec bases et documents complets.",
-    countries: [
-      "Bénin",
-      "Burkina Faso",
-      "Burundi",
-      "Cameroun",
-      "Congo",
-      "Côte d'Ivoire",
-      "Niger",
-      "Sénégal",
-      "Tchad",
-      "Togo",
-    ],
-  },
-  {
-    key: "PASEC2019",
-    label: "PASEC2019",
-    year: "2019",
-    description: "Cycle élargi à 14 pays avec ressources internationales et nationales.",
-    countries: [
-      "Bénin",
-      "Burkina Faso",
-      "Burundi",
-      "Cameroun",
-      "Congo",
-      "Côte d'Ivoire",
-      "Gabon",
-      "Guinée",
-      "Madagascar",
-      "Niger",
-      "République démocratique du Congo",
-      "Sénégal",
-      "Tchad",
-      "Togo",
-    ],
-  },
-  {
-    key: "PASEC2024",
+    id: "PASEC2024",
     label: "PASEC2024",
-    year: "2024",
-    description: "Cycle en déploiement avec publication progressive selon les statuts.",
+    subtitle: "21 pays",
+    type: "cycle",
+    highlight: "Bientôt disponible",
     countries: [
       "Bénin",
       "Burkina Faso",
@@ -69,115 +30,94 @@ const cycleDefinitions = [
     ],
   },
   {
-    key: "Autres évaluations PASEC",
-    label: "Autres évaluations PASEC",
-    year: "Historique",
-    description: "Évaluations historiques consultables par pays puis année.",
-    countries: [],
+    id: "PASEC2019",
+    label: "PASEC2019",
+    subtitle: "14 pays",
+    type: "cycle",
+    countries: [
+      "Bénin",
+      "Burkina Faso",
+      "Burundi",
+      "Cameroun",
+      "Congo",
+      "Côte d'Ivoire",
+      "Gabon",
+      "Guinée",
+      "Madagascar",
+      "Niger",
+      "République démocratique du Congo",
+      "Sénégal",
+      "Tchad",
+      "Togo",
+    ],
+  },
+  {
+    id: "PASEC2014",
+    label: "PASEC2014",
+    subtitle: "10 pays",
+    type: "cycle",
+    countries: [
+      "Bénin",
+      "Burkina Faso",
+      "Burundi",
+      "Cameroun",
+      "Congo",
+      "Côte d'Ivoire",
+      "Niger",
+      "Sénégal",
+      "Tchad",
+      "Togo",
+    ],
+  },
+  {
+    id: "ANCIENNES",
+    label: "Anciennes évaluations",
+    subtitle: "Pays et années historiques",
+    type: "historical",
+    entries: [
+      "Bénin — 2005",
+      "Burkina Faso — 2006",
+      "Burundi — 2008-2009",
+      "Cambodge — 2011-2012",
+      "Cameroun (zone anglophone) — 2005",
+      "Cameroun (zone francophone) — 2005",
+      "Comores — 2008-2009",
+      "Congo — 2006",
+      "Côte d'Ivoire — 2009",
+      "Gabon — 2006",
+      "Guinée — 2004",
+      "Liban — 2010",
+      "Madagascar — 2005",
+      "Mali — 2011-2012",
+      "Maurice — 2006",
+      "Mauritanie — 2004",
+      "RDP Lao — 2011-2012",
+      "République démocratique du Congo — 2010",
+      "Sénégal — 2006",
+      "Tchad — 2004",
+      "Tchad — 2010",
+      "Togo — 2010",
+      "Vietnam — 2011-2012",
+    ],
   },
 ];
-
-const historicalEntries = [
-  { country: "Bénin", year: "2005", language: "Français" },
-  { country: "Burkina Faso", year: "2006", language: "Français" },
-  { country: "Burundi", year: "2008-2009", language: "Français" },
-  { country: "Cambodge", year: "2011-2012", language: "Français" },
-  { country: "Cameroun (zone anglophone)", year: "2005", language: "Anglais" },
-  { country: "Cameroun (zone francophone)", year: "2005", language: "Français" },
-  { country: "Comores", year: "2008-2009", language: "Français" },
-  { country: "Congo", year: "2006", language: "Français" },
-  { country: "Côte d'Ivoire", year: "2009", language: "Français" },
-  { country: "Gabon", year: "2006", language: "Français" },
-  { country: "Guinée", year: "2004", language: "Français" },
-  { country: "Liban", year: "2010", language: "Français" },
-  { country: "Madagascar", year: "2005", language: "Français" },
-  { country: "Mali", year: "2011-2012", language: "Français" },
-  { country: "Maurice", year: "2006", language: "Français" },
-  { country: "Mauritanie", year: "2004", language: "Français" },
-  { country: "RDP Lao", year: "2011-2012", language: "Français" },
-  { country: "République démocratique du Congo", year: "2010", language: "Français" },
-  { country: "Sénégal", year: "2006", language: "Français" },
-  { country: "Tchad", year: "2004", language: "Français" },
-  { country: "Tchad", year: "2010", language: "Français" },
-  { country: "Togo", year: "2010", language: "Français" },
-  { country: "Vietnam", year: "2011-2012", language: "Français" },
-];
-
-const usageOptions = [
-  "Revue documentaire / consultation",
-  "Utilisation dans une publication",
-  "Analyse secondaire de données",
-  "Utilisation dans un mémoire ou une thèse",
-  "Appui à la décision / formulation de politique publique",
-  "Usage pédagogique ou universitaire",
-  "Autre",
-];
-
-const profileOptions = [
-  "Décideur politique",
-  "Chercheur",
-  "Enseignant-chercheur / universitaire",
-  "Étudiant",
-  "Enseignant du primaire ou du secondaire",
-  "Consultant / expert",
-  "Partenaire technique et financier",
-  "Autre",
-];
-
-const baseFileFormats = [
-  { label: "SPSS (.sav)", extension: "sav", mime: "application/octet-stream" },
-  { label: "Stata (.dta)", extension: "dta", mime: "application/octet-stream" },
-];
-
-const documentFormats = {
-  questionnaire: [{ label: "PDF (.pdf)", extension: "pdf", mime: "application/pdf" }],
-  manual: [{ label: "PDF (.pdf)", extension: "pdf", mime: "application/pdf" }],
-  documentation: [{ label: "PDF (.pdf)", extension: "pdf", mime: "application/pdf" }],
-  archive: [{ label: "ZIP (.zip)", extension: "zip", mime: "application/zip" }],
-};
 
 const appState = {
-  accessRequest: null,
-  unlocked: false,
-  selectedResourceIds: new Set(),
-  filters: {
-    cycle: "all",
-    country: "all",
-    year: "all",
-    type: "all",
-    language: "all",
-    status: "all",
-    search: "",
-  },
+  accessGranted: false,
+  request: null,
+  selections: new Set(),
+  disclosureState: {},
 };
 
 const dom = {
   accessForm: document.querySelector("#access-form"),
-  cycleOptions: document.querySelector("#cycle-options"),
-  countryOptions: document.querySelector("#country-options"),
-  usageOptions: document.querySelector("#usage-options"),
-  profileSelect: document.querySelector("#profile-select"),
-  allCountries: document.querySelector("#all-countries"),
   formFeedback: document.querySelector("#form-feedback"),
-  savedRequestPreview: document.querySelector("#saved-request-preview"),
-  portalSection: document.querySelector("#portal-section"),
-  portalSummary: document.querySelector("#portal-summary"),
-  spaceGrid: document.querySelector("#space-grid"),
-  treeView: document.querySelector("#tree-view"),
-  resultsList: document.querySelector("#results-list"),
-  resultsCount: document.querySelector("#results-count"),
-  selectionCount: document.querySelector("#selection-count"),
-  metadataPreview: document.querySelector("#metadata-preview"),
-  filterCycle: document.querySelector("#filter-cycle"),
-  filterCountry: document.querySelector("#filter-country"),
-  filterYear: document.querySelector("#filter-year"),
-  filterType: document.querySelector("#filter-type"),
-  filterLanguage: document.querySelector("#filter-language"),
-  filterStatus: document.querySelector("#filter-status"),
-  filterSearch: document.querySelector("#filter-search"),
-  resetFilters: document.querySelector("#reset-filters"),
-  downloadSelection: document.querySelector("#download-selection"),
-  statusStats: document.querySelector("#status-stats"),
+  requestSummary: document.querySelector("#request-summary"),
+  accessShell: document.querySelector("#access-shell"),
+  goDownloads: document.querySelector("#go-downloads"),
+  downloadSection: document.querySelector("#download-section"),
+  downloadCount: document.querySelector("#download-count"),
+  downloadList: document.querySelector("#download-list"),
 };
 
 function slugify(value) {
@@ -189,491 +129,207 @@ function slugify(value) {
     .replace(/^-|-$/g, "");
 }
 
-function buildSuggestedUrl(parts, extension) {
-  return `/downloads/${parts.map(slugify).join("/")}.${extension}`;
+function selectionKey(evaluationId, kind, value = "") {
+  return [evaluationId, kind, value].filter(Boolean).join("::");
 }
 
-function buildDownloads(parts, formats) {
-  return formats.map((format) => ({
-    ...format,
-    suggestedUrl: buildSuggestedUrl(parts, format.extension),
-  }));
+function getSelectionCountForEvaluation(evaluation) {
+  return [...appState.selections].filter((key) => key.startsWith(`${evaluation.id}::`)).length;
 }
 
-function languageForCountry(country) {
-  if (country === "Nigéria") return "Anglais";
-  if (country === "Mozambique") return "Portugais";
-  if (country === "Djibouti") return "Français";
-  return "Français";
+function getSelectionCountForGroup(evaluationId, kind) {
+  return [...appState.selections].filter((key) => key.startsWith(`${evaluationId}::${kind}`)).length;
 }
 
-function buildCycleStatuses(cycleKey, index) {
-  if (cycleKey === "PASEC2024") {
-    if (index <= 4) {
-      return { base: "Disponible", questionnaire: "Disponible", documentation: "Disponible" };
-    }
-    if (index <= 12) {
-      return { base: "À venir", questionnaire: "Disponible", documentation: "À venir" };
-    }
-    if (index <= 17) {
-      return { base: "Restreint", questionnaire: "Disponible", documentation: "Restreint" };
-    }
-    return { base: "Non publié", questionnaire: "À venir", documentation: "Non publié" };
-  }
-
-  if (cycleKey === "PASEC2019" && index >= 11) {
-    return { base: "Disponible", questionnaire: "Disponible", documentation: "Restreint" };
-  }
-
-  return { base: "Disponible", questionnaire: "Disponible", documentation: "Disponible" };
+function isDisclosureOpen(key, defaultOpen = false) {
+  return key in appState.disclosureState ? appState.disclosureState[key] : defaultOpen;
 }
 
-function createResource({
-  id,
-  title,
-  cycle,
-  year,
-  scope,
-  country,
-  type,
-  language,
-  status,
-  downloads,
-  order,
-  updatedAt,
-}) {
-  return {
-    id,
-    title,
-    cycle,
-    year,
-    scope,
-    country,
-    type,
-    language,
-    status,
-    downloads,
-    updatedAt,
-    order,
-  };
+function getStatusForCycleSelection(evaluationId, kind, value = "") {
+  if (evaluationId !== "PASEC2024") return "Disponible";
+
+  if (kind === "international") return "À venir";
+  if (kind === "manual") return "Disponible";
+  if (kind === "technical") return "Disponible";
+  if (kind === "questionnaires") return "Disponible";
+
+  const availableCountries = new Set([
+    "Bénin",
+    "Burkina Faso",
+    "Burundi",
+    "Cameroun",
+    "Congo",
+  ]);
+
+  const pendingCountries = new Set([
+    "Côte d'Ivoire",
+    "Gabon",
+    "Guinée",
+    "Madagascar",
+    "Niger",
+    "République démocratique du Congo",
+    "Sénégal",
+    "Tchad",
+  ]);
+
+  if (availableCountries.has(value)) return "Disponible";
+  if (pendingCountries.has(value)) return "À venir";
+  return "Restreint";
 }
 
-function generateCycleResources(definition) {
-  const baseId = slugify(definition.key);
-  const internationalStatus =
-    definition.key === "PASEC2024"
-      ? {
-          base: "À venir",
-          manual: "Disponible",
-          documentation: "Disponible",
-          questionnaire: "Disponible",
+function getStatusForHistoricalEntry(entry) {
+  if (entry.includes("Liban") || entry.includes("Vietnam")) return "Restreint";
+  if (entry.includes("RDP Lao")) return "À venir";
+  return "Disponible";
+}
+
+function buildDownloadEntries() {
+  const entries = [];
+
+  [...appState.selections]
+    .sort((left, right) => left.localeCompare(right))
+    .forEach((key) => {
+      const [evaluationId, kind, value] = key.split("::");
+      const evaluation = evaluations.find((item) => item.id === evaluationId);
+
+      if (!evaluation) return;
+
+      if (evaluation.type === "cycle") {
+        if (kind === "international") {
+          const status = getStatusForCycleSelection(evaluationId, kind);
+          entries.push(
+            createDownloadEntry(
+              evaluation.label,
+              `Base de données internationale ${evaluation.label}`,
+              "Base de données internationale",
+              status,
+              ["SPSS (.sav)", "Stata (.dta)"]
+            )
+          );
         }
-      : {
-          base: "Disponible",
-          manual: "Disponible",
-          documentation: "Disponible",
-          questionnaire: "Disponible",
-        };
 
-  const internationalResources = [
-    createResource({
-      id: `${baseId}-international-base`,
-      title: `Base de données internationale ${definition.label}`,
-      cycle: definition.label,
-      year: definition.year,
-      scope: "Internationale",
-      country: "International",
-      type: "Base de données internationale",
-      language: "Français",
-      status: internationalStatus.base,
-      downloads: buildDownloads(
-        [definition.label, "international", "base-de-donnees"],
-        baseFileFormats
-      ),
-      order: 1,
-      updatedAt: "2026-04-20",
-    }),
-    createResource({
-      id: `${baseId}-international-manuel`,
-      title: `Manuel d'utilisation des données ${definition.label}`,
-      cycle: definition.label,
-      year: definition.year,
-      scope: "Internationale",
-      country: "International",
-      type: "Manuel",
-      language: "Français",
-      status: internationalStatus.manual,
-      downloads: buildDownloads(
-        [definition.label, "international", "manuel-utilisation"],
-        documentFormats.manual
-      ),
-      order: 2,
-      updatedAt: "2026-04-20",
-    }),
-    createResource({
-      id: `${baseId}-international-technique`,
-      title: `Documentation technique ${definition.label}`,
-      cycle: definition.label,
-      year: definition.year,
-      scope: "Internationale",
-      country: "International",
-      type: "Documentation technique",
-      language: "Français",
-      status: internationalStatus.documentation,
-      downloads: buildDownloads(
-        [definition.label, "international", "documentation-technique"],
-        documentFormats.documentation
-      ),
-      order: 3,
-      updatedAt: "2026-04-20",
-    }),
-    createResource({
-      id: `${baseId}-international-questionnaires`,
-      title: `Questionnaires ${definition.label}`,
-      cycle: definition.label,
-      year: definition.year,
-      scope: "Internationale",
-      country: "International",
-      type: "Questionnaire",
-      language: "Français",
-      status: internationalStatus.questionnaire,
-      downloads: buildDownloads(
-        [definition.label, "international", "questionnaires"],
-        documentFormats.archive
-      ),
-      order: 4,
-      updatedAt: "2026-04-20",
-    }),
-  ];
+        if (kind === "manual") {
+          entries.push(
+            createDownloadEntry(
+              evaluation.label,
+              `Manuel d'utilisation des données ${evaluation.label}`,
+              "Document",
+              getStatusForCycleSelection(evaluationId, kind),
+              ["PDF (.pdf)"]
+            )
+          );
+        }
 
-  const countryResources = definition.countries.flatMap((country, index) => {
-    const statuses = buildCycleStatuses(definition.key, index);
-    const countrySlug = slugify(country);
-    const language = languageForCountry(country);
+        if (kind === "technical") {
+          entries.push(
+            createDownloadEntry(
+              evaluation.label,
+              `Rapport technique ${evaluation.label}`,
+              "Document",
+              getStatusForCycleSelection(evaluationId, kind),
+              ["PDF (.pdf)"]
+            )
+          );
+        }
 
-    return [
-      createResource({
-        id: `${baseId}-${countrySlug}-base`,
-        title: `Base de données nationale ${definition.label} - ${country}`,
-        cycle: definition.label,
-        year: definition.year,
-        scope: "Nationale",
-        country,
-        type: "Base de données nationale",
-        language,
-        status: statuses.base,
-        downloads: buildDownloads(
-          [definition.label, country, "base-nationale"],
-          baseFileFormats
-        ),
-        order: 10 + index,
-        updatedAt: "2026-04-20",
-      }),
-      createResource({
-        id: `${baseId}-${countrySlug}-questionnaire`,
-        title: `Questionnaire ${definition.label} - ${country}`,
-        cycle: definition.label,
-        year: definition.year,
-        scope: "Nationale",
-        country,
-        type: "Questionnaire",
-        language,
-        status: statuses.questionnaire,
-        downloads: buildDownloads(
-          [definition.label, country, "questionnaire"],
-          documentFormats.questionnaire
-        ),
-        order: 120 + index,
-        updatedAt: "2026-04-20",
-      }),
-      createResource({
-        id: `${baseId}-${countrySlug}-documentation`,
-        title: `Documentation ${definition.label} - ${country}`,
-        cycle: definition.label,
-        year: definition.year,
-        scope: "Nationale",
-        country,
-        type: "Documentation technique",
-        language,
-        status: statuses.documentation,
-        downloads: buildDownloads(
-          [definition.label, country, "documentation"],
-          documentFormats.documentation
-        ),
-        order: 220 + index,
-        updatedAt: "2026-04-20",
-      }),
-    ];
-  });
+        if (kind === "questionnaires") {
+          entries.push(
+            createDownloadEntry(
+              evaluation.label,
+              `Questionnaires contextuels ${evaluation.label}`,
+              "Document",
+              getStatusForCycleSelection(evaluationId, kind),
+              ["PDF (.pdf)"]
+            )
+          );
+        }
 
-  return [...internationalResources, ...countryResources];
+        if (kind === "country") {
+          const status = getStatusForCycleSelection(evaluationId, kind, value);
+          entries.push(
+            createDownloadEntry(
+              evaluation.label,
+              `Base de données ${evaluation.label} - ${value}`,
+              "Base de données pays",
+              status,
+              ["SPSS (.sav)", "Stata (.dta)"]
+            )
+          );
+        }
+      }
+
+      if (evaluation.type === "historical" && kind === "entry") {
+        const status = getStatusForHistoricalEntry(value);
+        entries.push(
+          createDownloadEntry(
+            evaluation.label,
+            `Base de données ${value}`,
+            "Base historique",
+            status,
+            ["SPSS (.sav)", "Stata (.dta)"]
+          )
+        );
+        entries.push(
+          createDownloadEntry(
+            evaluation.label,
+            `Questionnaires contextuels ${value}`,
+            "Document",
+            status,
+            ["PDF (.pdf)"]
+          )
+        );
+        entries.push(
+          createDownloadEntry(
+            evaluation.label,
+            `Documentation ${value}`,
+            "Document",
+            status,
+            ["PDF (.pdf)"]
+          )
+        );
+      }
+    });
+
+  return entries;
 }
 
-function generateHistoricalResources() {
-  return historicalEntries.flatMap((entry, index) => {
-    const baseId = `${slugify(entry.country)}-${slugify(entry.year)}`;
-    const status =
-      entry.country === "Liban" || entry.country === "Vietnam"
-        ? { base: "Restreint", questionnaire: "Disponible", documentation: "Disponible" }
-        : entry.country === "RDP Lao"
-          ? { base: "Non publié", questionnaire: "Disponible", documentation: "Restreint" }
-          : { base: "Disponible", questionnaire: "Disponible", documentation: "Disponible" };
-
-    return [
-      createResource({
-        id: `historique-${baseId}-base`,
-        title: `Base de données ${entry.country} ${entry.year}`,
-        cycle: "Autres évaluations PASEC",
-        year: entry.year,
-        scope: "Historique",
-        country: entry.country,
-        type: "Base de données nationale",
-        language: entry.language,
-        status: status.base,
-        downloads: buildDownloads(
-          ["historique", entry.country, entry.year, "base-de-donnees"],
-          baseFileFormats
-        ),
-        order: 300 + index,
-        updatedAt: "2026-04-20",
-      }),
-      createResource({
-        id: `historique-${baseId}-questionnaire`,
-        title: `Questionnaire ${entry.country} ${entry.year}`,
-        cycle: "Autres évaluations PASEC",
-        year: entry.year,
-        scope: "Historique",
-        country: entry.country,
-        type: "Questionnaire",
-        language: entry.language,
-        status: status.questionnaire,
-        downloads: buildDownloads(
-          ["historique", entry.country, entry.year, "questionnaire"],
-          documentFormats.questionnaire
-        ),
-        order: 450 + index,
-        updatedAt: "2026-04-20",
-      }),
-      createResource({
-        id: `historique-${baseId}-documentation`,
-        title: `Documentation ${entry.country} ${entry.year}`,
-        cycle: "Autres évaluations PASEC",
-        year: entry.year,
-        scope: "Historique",
-        country: entry.country,
-        type: "Autre document",
-        language: entry.language,
-        status: status.documentation,
-        downloads: buildDownloads(
-          ["historique", entry.country, entry.year, "documentation"],
-          documentFormats.documentation
-        ),
-        order: 600 + index,
-        updatedAt: "2026-04-20",
-      }),
-    ];
-  });
-}
-
-const resources = [
-  ...cycleDefinitions
-    .filter((definition) => definition.key !== "Autres évaluations PASEC")
-    .flatMap(generateCycleResources),
-  ...generateHistoricalResources(),
-].sort((left, right) => left.order - right.order || left.title.localeCompare(right.title));
-
-function getAllCountriesForSelectedCycles(selectedCycles) {
-  if (!selectedCycles.length) return [];
-
-  const regularCountries = cycleDefinitions
-    .filter((definition) => selectedCycles.includes(definition.label))
-    .flatMap((definition) => definition.countries);
-
-  const historicalCountries = selectedCycles.includes("Autres évaluations PASEC")
-    ? historicalEntries.map((entry) => entry.country)
-    : [];
-
-  return [...new Set([...regularCountries, ...historicalCountries])].sort((a, b) =>
-    a.localeCompare(b)
-  );
-}
-
-function getCountrySectionModel(selectedCycles) {
+function createDownloadEntry(group, title, type, status, formats) {
   return {
-    includeInternational: selectedCycles.some(
-      (cycle) => cycle !== "Autres évaluations PASEC"
-    ),
-    countries: getAllCountriesForSelectedCycles(selectedCycles),
+    id: slugify(`${group}-${title}-${type}`),
+    group,
+    title,
+    type,
+    status,
+    formats,
   };
 }
 
-function getUniqueValues(key, filterFn = () => true) {
-  return [...new Set(resources.filter(filterFn).map((resource) => resource[key]))].sort((a, b) =>
-    a.localeCompare(b)
-  );
-}
+function downloadDemoFile(entry, format) {
+  const content = [
+    "Portail d'accès aux données PASEC - démonstration",
+    "",
+    `Groupe : ${entry.group}`,
+    `Ressource : ${entry.title}`,
+    `Type : ${entry.type}`,
+    `Statut : ${entry.status}`,
+    `Format demandé : ${format}`,
+    "",
+    "Dans la version finale, ce bouton téléchargera le fichier réel.",
+  ].join("\n");
 
-function isAvailable(resource) {
-  return resource.status === "Disponible";
-}
-
-function downloadTextFile(filename, contents, mime = "text/plain;charset=utf-8") {
-  const blob = new Blob([contents], { type: mime });
+  const blob = new Blob([content], { type: "text/plain;charset=utf-8" });
   const url = URL.createObjectURL(blob);
   const link = document.createElement("a");
   link.href = url;
-  link.download = filename;
+  link.download = `${slugify(entry.title)}-${slugify(format)}-demo.txt`;
   document.body.appendChild(link);
   link.click();
   document.body.removeChild(link);
   URL.revokeObjectURL(url);
 }
 
-function buildResourceDemo(resource, download) {
-  return [
-    "Portail d'accès aux données PASEC - démonstration",
-    "",
-    `Ressource : ${resource.title}`,
-    `Cycle / année : ${resource.cycle} / ${resource.year}`,
-    `Pays : ${resource.country}`,
-    `Type : ${resource.type}`,
-    `Langue : ${resource.language}`,
-    `Statut : ${resource.status}`,
-    `Format demandé : ${download.label}`,
-    `URL directe prévue : ${download.suggestedUrl}`,
-    "",
-    "Dans l'intégration réelle, ce bouton pointera vers le fichier final.",
-  ].join("\n");
-}
-
-function renderCycleOptions() {
-  dom.cycleOptions.innerHTML = cycleDefinitions
-    .map(
-      (definition) => `
-        <label class="pill-option">
-          <input type="checkbox" name="cycles" value="${definition.label}" />
-          <span>${definition.label}</span>
-        </label>
-      `
-    )
-    .join("");
-}
-
-function renderUsageOptions() {
-  dom.usageOptions.innerHTML = usageOptions
-    .map(
-      (option) => `
-        <label class="country-option">
-          <input type="checkbox" name="usage" value="${option}" />
-          <span>${option}</span>
-        </label>
-      `
-    )
-    .join("");
-}
-
-function renderProfileOptions() {
-  dom.profileSelect.innerHTML += profileOptions
-    .map((option) => `<option value="${option}">${option}</option>`)
-    .join("");
-}
-
-function renderCountryOptions() {
-  const selectedCycles = getSelectedCyclesFromForm();
-  const previousSelections = new Set(
-    [...dom.accessForm.querySelectorAll('input[name="countries"]:checked')].map(
-      (input) => input.value
-    )
-  );
-  const { includeInternational, countries } = getCountrySectionModel(selectedCycles);
-
-  if (!countries.length && !includeInternational) {
-    dom.countryOptions.innerHTML =
-      '<p class="field-help">Sélectionnez d\'abord un ou plusieurs espaces de données.</p>';
-    return;
-  }
-
-  const internationalMarkup = includeInternational
-    ? `
-      <div class="country-group">
-        <p class="country-group-title">Accès international</p>
-        <label class="country-option featured-option">
-          <input
-            type="checkbox"
-            name="countries"
-            value="International"
-            ${previousSelections.has("International") ? "checked" : ""}
-          />
-          <span class="option-copy">
-            <strong>International</strong>
-            <small>
-              Accéder directement à la base de données internationale, au
-              manuel, à la documentation technique et aux questionnaires du ou
-              des cycles sélectionnés.
-            </small>
-          </span>
-        </label>
-      </div>
-    `
-    : "";
-
-  const countriesMarkup = countries.length
-    ? `
-      <div class="country-group">
-        <p class="country-group-title">Accès par pays</p>
-        <div class="checkbox-grid">
-          ${countries
-            .map(
-              (country) => `
-                <label class="country-option">
-                  <input
-                    type="checkbox"
-                    name="countries"
-                    value="${country}"
-                    ${previousSelections.has(country) ? "checked" : ""}
-                    ${dom.allCountries.checked ? "disabled" : ""}
-                  />
-                  <span>${country}</span>
-                </label>
-              `
-            )
-            .join("")}
-        </div>
-      </div>
-    `
-    : "";
-
-  dom.countryOptions.innerHTML = `${internationalMarkup}${countriesMarkup}`;
-}
-
-function getSelectedCyclesFromForm() {
-  return [...dom.accessForm.querySelectorAll('input[name="cycles"]:checked')].map(
-    (input) => input.value
-  );
-}
-
-function getSelectedCountriesFromForm() {
-  const selectedCountries = [...dom.accessForm.querySelectorAll('input[name="countries"]:checked')].map(
-    (input) => input.value
-  );
-
-  if (dom.allCountries.checked) {
-    return selectedCountries.includes("International")
-      ? ["Tous les pays", "International"]
-      : ["Tous les pays"];
-  }
-
-  return selectedCountries;
-}
-
-function readAccessForm() {
+function readFormPayload() {
   const formData = new FormData(dom.accessForm);
-  const selectedCycles = getSelectedCyclesFromForm();
-  const selectedCountries = getSelectedCountriesFromForm();
-  const usage = [...dom.accessForm.querySelectorAll('input[name="usage"]:checked')].map(
-    (input) => input.value
-  );
-
   return {
     lastName: formData.get("lastName")?.toString().trim(),
     firstName: formData.get("firstName")?.toString().trim(),
@@ -681,541 +337,385 @@ function readAccessForm() {
     jobTitle: formData.get("jobTitle")?.toString().trim(),
     residenceCountry: formData.get("residenceCountry")?.toString().trim(),
     email: formData.get("email")?.toString().trim(),
-    cycles: selectedCycles,
-    countries: selectedCountries,
-    usage,
-    otherUsage: formData.get("otherUsage")?.toString().trim(),
+    usage: formData.get("usage")?.toString().trim(),
     profile: formData.get("profile")?.toString().trim(),
-    otherProfile: formData.get("otherProfile")?.toString().trim(),
     consent: Boolean(formData.get("consent")),
-    submittedAt: new Date().toLocaleString("fr-FR"),
   };
 }
 
-function validateAccessForm(payload) {
-  const missingFields = [
-    payload.lastName,
-    payload.firstName,
-    payload.institution,
-    payload.jobTitle,
-    payload.residenceCountry,
-    payload.email,
-  ].some((value) => !value);
+function validateForm(payload) {
+  if (
+    !payload.lastName ||
+    !payload.firstName ||
+    !payload.institution ||
+    !payload.jobTitle ||
+    !payload.residenceCountry ||
+    !payload.email ||
+    !payload.usage ||
+    !payload.profile
+  ) {
+    return "Veuillez renseigner tous les champs du formulaire.";
+  }
 
-  if (missingFields) return "Veuillez compléter toutes les informations d'identification.";
-  if (!payload.cycles.length) return "Veuillez choisir au moins un espace de données.";
-  if (!payload.countries.length) return "Veuillez sélectionner au moins un pays ou Tous les pays.";
-  if (!payload.usage.length && !payload.otherUsage)
-    return "Veuillez indiquer l'usage prévu des données.";
-  if (!payload.profile) return "Veuillez sélectionner un profil utilisateur.";
-  if (!payload.consent) return "La validation des conditions d'utilisation est obligatoire.";
+  if (!payload.consent) {
+    return "Veuillez accepter les conditions d'utilisation.";
+  }
+
   return "";
 }
 
 function saveAccessRequest(payload) {
-  const saved = JSON.parse(localStorage.getItem("pasecAccessRequests") || "[]");
-  saved.unshift(payload);
-  localStorage.setItem("pasecAccessRequests", JSON.stringify(saved.slice(0, 10)));
+  localStorage.setItem("pasecAccessRequest", JSON.stringify(payload));
 }
 
-function renderSavedRequestPreview() {
-  const saved = JSON.parse(localStorage.getItem("pasecAccessRequests") || "[]");
-  const latest = saved[0];
-
-  if (!latest) {
-    dom.savedRequestPreview.textContent = "Aucune demande enregistrée localement pour le moment.";
+function renderRequestSummary() {
+  if (!appState.accessGranted || !appState.request) {
+    dom.requestSummary.textContent =
+      "Remplissez le formulaire pour activer cet espace.";
     return;
   }
 
-  dom.savedRequestPreview.innerHTML = `
-    <strong>${latest.firstName} ${latest.lastName}</strong><br />
-    ${latest.institution} · ${latest.profile}<br />
-    ${latest.cycles.join(", ")}<br />
-    ${latest.countries.join(", ")}<br />
-    <span>Enregistré le ${latest.submittedAt}</span>
+  const request = appState.request;
+  dom.requestSummary.innerHTML = `
+    <strong>${request.firstName} ${request.lastName}</strong> ·
+    ${request.institution} ·
+    ${request.profile}
   `;
 }
 
-function setDefaultFiltersFromRequest(request) {
-  appState.filters.cycle = request.cycles.length === 1 ? request.cycles[0] : "all";
-  appState.filters.country =
-    request.countries.length === 1 && request.countries[0] !== "Tous les pays"
-      ? request.countries[0]
-      : "all";
-  appState.filters.year = "all";
-  appState.filters.type = "all";
-  appState.filters.language = "all";
-  appState.filters.status = "all";
-  appState.filters.search = "";
-}
+function renderAccessShell() {
+  dom.accessShell.classList.toggle("locked", !appState.accessGranted);
 
-function renderPortalSummary() {
-  if (!appState.accessRequest) return;
+  dom.accessShell.innerHTML = evaluations
+    .map((evaluation, index) => {
+      const selectionCount = getSelectionCountForEvaluation(evaluation);
+      const countLabel = selectionCount
+        ? `${selectionCount} choix`
+        : "Aucun choix";
 
-  const request = appState.accessRequest;
-  dom.portalSummary.innerHTML = `
-    <span class="meta-pill">${request.firstName} ${request.lastName}</span>
-    <span class="meta-pill">${request.institution}</span>
-    <span class="meta-pill">${request.cycles.join(", ")}</span>
-    <span class="meta-pill">${request.countries.join(", ")}</span>
-  `;
-}
-
-function renderSpaceCards() {
-  dom.spaceGrid.innerHTML = cycleDefinitions
-    .map((definition) => {
-      const cycleResources = resources.filter((resource) => resource.cycle === definition.label);
-      const availableCount = cycleResources.filter((resource) => resource.status === "Disponible").length;
-      const active = appState.filters.cycle === definition.label;
-
-      return `
-        <button type="button" class="space-card ${active ? "active" : ""}" data-cycle="${definition.label}">
-          <h3>${definition.label}</h3>
-          <p>${definition.description}</p>
-          <div class="space-footer">
-            <span class="space-count">${cycleResources.length} ressources</span>
-            <span class="status-pill space-status">${availableCount} disponibles</span>
-          </div>
-        </button>
-      `;
-    })
-    .join("");
-
-  dom.spaceGrid.querySelectorAll(".space-card").forEach((button) => {
-    button.addEventListener("click", () => {
-      appState.filters.cycle = button.dataset.cycle;
-      appState.filters.country = "all";
-      syncFiltersToInputs();
-      renderPortal();
-    });
-  });
-}
-
-function renderTreeView() {
-  const historicalByCountry = historicalEntries.reduce((accumulator, entry) => {
-    accumulator[entry.country] ||= [];
-    accumulator[entry.country].push(entry.year);
-    return accumulator;
-  }, {});
-
-  dom.treeView.innerHTML = cycleDefinitions
-    .map((definition) => {
-      if (definition.label === "Autres évaluations PASEC") {
+      if (evaluation.type === "cycle") {
+        const evaluationDisclosure = `evaluation::${evaluation.id}`;
         return `
-          <details>
-            <summary>${definition.label}</summary>
-            <div class="tree-branch">
-              ${Object.entries(historicalByCountry)
-                .sort(([left], [right]) => left.localeCompare(right))
-                .map(
-                  ([country, years]) => `
-                    <details>
-                      <summary>${country}</summary>
-                      <div class="tree-branch">
-                        ${years
-                          .map(
-                            (year) => `
-                              <button
-                                type="button"
-                                class="tree-button"
-                                data-cycle="Autres évaluations PASEC"
-                                data-country="${country}"
-                                data-year="${year}"
-                              >
-                                <span>${year}</span>
-                                <span>Voir</span>
-                              </button>
-                            `
-                          )
-                          .join("")}
-                      </div>
-                    </details>
+          <article class="evaluation-card">
+            <details
+              data-disclosure="${evaluationDisclosure}"
+              ${isDisclosureOpen(evaluationDisclosure, index === 0) ? "open" : ""}
+            >
+              <summary>
+                <div class="evaluation-summary">
+                  <h3>${evaluation.label}</h3>
+                  <p>${evaluation.subtitle}</p>
+                </div>
+                <div class="status-tags">
+                  ${evaluation.highlight ? `<span class="coming-soon">${evaluation.highlight}</span>` : ""}
+                  <span class="badge">${countLabel}</span>
+                </div>
+              </summary>
+              <div class="selection-body">
+                ${renderSelectionGroup(
+                  evaluation,
+                  "international",
+                  "Base de données",
+                  renderCycleCheckbox(
+                    evaluation,
+                    "international",
+                    "Base de données internationale",
+                    "SPSS et/ou Stata",
+                    true
+                  ),
+                  true
+                )}
+                ${renderSelectionGroup(
+                  evaluation,
+                  "country",
+                  "Liste des pays",
                   `
-                )
-                .join("")}
-            </div>
-          </details>
+                    <div class="country-grid">
+                      ${evaluation.countries
+                        .map((country) => renderCountryCheckbox(evaluation, country))
+                        .join("")}
+                    </div>
+                  `
+                )}
+                ${renderSelectionGroup(
+                  evaluation,
+                  "manual",
+                  "Manuel d'utilisation des données",
+                  renderCycleCheckbox(
+                    evaluation,
+                    "manual",
+                    "Manuel d'utilisation des données",
+                    "PDF",
+                    false
+                  )
+                )}
+                ${renderSelectionGroup(
+                  evaluation,
+                  "technical",
+                  "Rapport technique",
+                  renderCycleCheckbox(
+                    evaluation,
+                    "technical",
+                    "Rapport technique",
+                    "PDF",
+                    false
+                  )
+                )}
+                ${renderSelectionGroup(
+                  evaluation,
+                  "questionnaires",
+                  "Questionnaires contextuels",
+                  renderCycleCheckbox(
+                    evaluation,
+                    "questionnaires",
+                    "Questionnaires contextuels",
+                    "PDF",
+                    false
+                  )
+                )}
+              </div>
+            </details>
+          </article>
         `;
       }
 
+      const evaluationDisclosure = `evaluation::${evaluation.id}`;
       return `
-        <details>
-          <summary>${definition.label}</summary>
-          <div class="tree-branch">
-            <button
-              type="button"
-              class="tree-button"
-              data-cycle="${definition.label}"
-              data-country="International"
-            >
-              <span>International</span>
-              <span>Voir</span>
-            </button>
-            ${definition.countries
-              .map(
-                (country) => `
-                  <button
-                    type="button"
-                    class="tree-button"
-                    data-cycle="${definition.label}"
-                    data-country="${country}"
-                  >
-                    <span>${country}</span>
-                    <span>Voir</span>
-                  </button>
+        <article class="evaluation-card">
+          <details
+            data-disclosure="${evaluationDisclosure}"
+            ${isDisclosureOpen(evaluationDisclosure, false) ? "open" : ""}
+          >
+            <summary>
+              <div class="evaluation-summary">
+                <h3>${evaluation.label}</h3>
+                <p>${evaluation.subtitle}</p>
+              </div>
+              <span class="badge">${countLabel}</span>
+            </summary>
+            <div class="selection-body">
+              ${renderSelectionGroup(
+                evaluation,
+                "entry",
+                "Liste des pays et années",
                 `
-              )
-              .join("")}
-          </div>
-        </details>
+                  <div class="country-grid">
+                    ${evaluation.entries
+                      .map((entry) => renderHistoricalCheckbox(evaluation, entry))
+                      .join("")}
+                  </div>
+                `,
+                true
+              )}
+            </div>
+          </details>
+        </article>
       `;
     })
     .join("");
 
-  dom.treeView.querySelectorAll(".tree-button").forEach((button) => {
-    button.addEventListener("click", () => {
-      appState.filters.cycle = button.dataset.cycle || "all";
-      appState.filters.country = button.dataset.country || "all";
-      appState.filters.year = button.dataset.year || "all";
-      syncFiltersToInputs();
-      renderPortal();
+  dom.accessShell.querySelectorAll("details[data-disclosure]").forEach((detailsElement) => {
+    detailsElement.addEventListener("toggle", () => {
+      appState.disclosureState[detailsElement.dataset.disclosure] = detailsElement.open;
+    });
+  });
+
+  dom.accessShell.querySelectorAll("input[data-selection]").forEach((input) => {
+    input.addEventListener("change", () => {
+      if (!appState.accessGranted) return;
+
+      const key = input.dataset.selection;
+      if (input.checked) {
+        appState.selections.add(key);
+      } else {
+        appState.selections.delete(key);
+      }
+
+      renderAccessShell();
+      renderDownloads();
     });
   });
 }
 
-function populateFilterSelect(selectElement, options, placeholder) {
-  selectElement.innerHTML = [
-    `<option value="all">${placeholder}</option>`,
-    ...options.map((option) => `<option value="${option}">${option}</option>`),
-  ].join("");
+function renderSelectionGroup(evaluation, kind, title, body, open = false) {
+  const count = getSelectionCountForGroup(evaluation.id, kind);
+  const countLabel = count ? `${count} sélection${count > 1 ? "s" : ""}` : "Aucune sélection";
+  const disclosureKey = `group::${evaluation.id}::${kind}`;
+
+  return `
+    <div class="selection-group">
+      <details
+        data-disclosure="${disclosureKey}"
+        ${isDisclosureOpen(disclosureKey, open) ? "open" : ""}
+      >
+        <summary>
+          <span class="selection-group-title">${title}</span>
+          <span class="selection-group-count">${countLabel}</span>
+        </summary>
+        <div class="selection-group-body">
+          ${body}
+        </div>
+      </details>
+    </div>
+  `;
 }
 
-function refreshFilterOptions() {
-  populateFilterSelect(
-    dom.filterCycle,
-    cycleDefinitions.map((definition) => definition.label),
-    "Tous les cycles"
-  );
+function renderCycleCheckbox(evaluation, kind, title, formatLabel, featured = false) {
+  const key = selectionKey(evaluation.id, kind);
+  const checked = appState.selections.has(key);
 
-  const cycleFilterFn =
-    appState.filters.cycle === "all"
-      ? () => true
-      : (resource) => resource.cycle === appState.filters.cycle;
-
-  populateFilterSelect(
-    dom.filterCountry,
-    getUniqueValues("country", cycleFilterFn),
-    "Tous les pays"
-  );
-
-  const countryFilterFn = (resource) =>
-    cycleFilterFn(resource) &&
-    (appState.filters.country === "all" || resource.country === appState.filters.country);
-
-  populateFilterSelect(dom.filterYear, getUniqueValues("year", countryFilterFn), "Toutes les années");
-  populateFilterSelect(
-    dom.filterType,
-    getUniqueValues("type", cycleFilterFn),
-    "Tous les types"
-  );
-  populateFilterSelect(
-    dom.filterLanguage,
-    getUniqueValues("language", cycleFilterFn),
-    "Toutes les langues"
-  );
-  populateFilterSelect(
-    dom.filterStatus,
-    getUniqueValues("status", cycleFilterFn),
-    "Tous les statuts"
-  );
+  return `
+    <label class="choice-line compact ${featured ? "featured" : ""}">
+      <input type="checkbox" data-selection="${key}" ${checked ? "checked" : ""} />
+      <span class="option-copy">
+        <strong>${title}</strong>
+        <small>${formatLabel}</small>
+      </span>
+    </label>
+  `;
 }
 
-function syncFiltersToInputs() {
-  refreshFilterOptions();
-  dom.filterCycle.value = appState.filters.cycle;
-  dom.filterCountry.value = appState.filters.country;
-  dom.filterYear.value = appState.filters.year;
-  dom.filterType.value = appState.filters.type;
-  dom.filterLanguage.value = appState.filters.language;
-  dom.filterStatus.value = appState.filters.status;
-  dom.filterSearch.value = appState.filters.search;
+function renderCountryCheckbox(evaluation, country) {
+  const key = selectionKey(evaluation.id, "country", country);
+  const checked = appState.selections.has(key);
+
+  return `
+    <label class="country-choice compact">
+      <input type="checkbox" data-selection="${key}" ${checked ? "checked" : ""} />
+      <span>${country}</span>
+    </label>
+  `;
 }
 
-function getFilteredResources() {
-  return resources.filter((resource) => {
-    const searchHaystack = [
-      resource.title,
-      resource.cycle,
-      resource.country,
-      resource.type,
-      resource.language,
-      resource.year,
-    ]
-      .join(" ")
-      .toLowerCase();
+function renderHistoricalCheckbox(evaluation, entry) {
+  const key = selectionKey(evaluation.id, "entry", entry);
+  const checked = appState.selections.has(key);
 
-    return (
-      (appState.filters.cycle === "all" || resource.cycle === appState.filters.cycle) &&
-      (appState.filters.country === "all" || resource.country === appState.filters.country) &&
-      (appState.filters.year === "all" || resource.year === appState.filters.year) &&
-      (appState.filters.type === "all" || resource.type === appState.filters.type) &&
-      (appState.filters.language === "all" || resource.language === appState.filters.language) &&
-      (appState.filters.status === "all" || resource.status === appState.filters.status) &&
-      (!appState.filters.search ||
-        searchHaystack.includes(appState.filters.search.toLowerCase()))
-    );
-  });
+  return `
+    <label class="country-choice compact">
+      <input type="checkbox" data-selection="${key}" ${checked ? "checked" : ""} />
+      <span>${entry}</span>
+    </label>
+  `;
 }
 
-function renderStatusStats(filteredResources) {
-  const statuses = ["Disponible", "À venir", "Restreint", "Non publié"];
-  dom.statusStats.innerHTML = statuses
-    .map((status) => {
-      const count = filteredResources.filter((resource) => resource.status === status).length;
-      return `<span class="status-pill ${statusClassName(status)}">${status} : ${count}</span>`;
-    })
-    .join("");
+function statusClass(status) {
+  if (status === "Disponible") return "available";
+  if (status === "À venir") return "pending";
+  return "restricted";
 }
 
-function statusClassName(status) {
-  return `status-${slugify(status)}`;
-}
+function renderDownloads() {
+  const downloadEntries = buildDownloadEntries();
+  dom.downloadCount.textContent = `${downloadEntries.length} fichier${
+    downloadEntries.length > 1 ? "s" : ""
+  }`;
+  dom.goDownloads.disabled = downloadEntries.length === 0 || !appState.accessGranted;
 
-function renderResults() {
-  const filteredResources = getFilteredResources();
-  renderStatusStats(filteredResources);
-
-  dom.resultsCount.textContent = `${filteredResources.length} ressource${
-    filteredResources.length > 1 ? "s" : ""
-  } trouvée${filteredResources.length > 1 ? "s" : ""}`;
-
-  dom.resultsList.innerHTML = filteredResources.length
-    ? filteredResources
-        .map((resource) => {
-          const selected = appState.selectedResourceIds.has(resource.id);
-          return `
-            <article class="resource-card">
-              <div class="resource-header">
-                <label class="resource-selector">
-                  <input
-                    type="checkbox"
-                    value="${resource.id}"
-                    ${selected ? "checked" : ""}
-                    ${isAvailable(resource) ? "" : "disabled"}
-                  />
-                  <span class="resource-title">${resource.title}</span>
-                </label>
-                <span class="status-pill ${statusClassName(resource.status)}">${resource.status}</span>
-              </div>
-              <div class="resource-body">
-                <p class="resource-subtitle">
-                  ${resource.cycle} · ${resource.year} · ${resource.country} · ${resource.scope}
-                </p>
-                <div class="resource-meta">
-                  <span class="meta-pill">${resource.type}</span>
-                  <span class="meta-pill">${resource.language}</span>
-                  <span class="meta-pill">Mise à jour : ${resource.updatedAt}</span>
-                </div>
-                <div class="resource-tags">
-                  ${resource.downloads
-                    .map((download) => `<span class="mini-chip">${download.label}</span>`)
-                    .join("")}
-                </div>
-                <div class="resource-actions">
-                  ${
-                    isAvailable(resource)
-                      ? resource.downloads
-                          .map(
-                            (download, index) => `
-                              <button
-                                type="button"
-                                class="download-button ${index > 0 ? "alt" : ""}"
-                                data-resource-id="${resource.id}"
-                                data-format="${download.extension}"
-                              >
-                                Télécharger ${download.extension.toUpperCase()}
-                              </button>
-                            `
-                          )
-                          .join("")
-                      : `<span class="resource-unavailable">${resource.status}</span>`
-                  }
-                </div>
-              </div>
-            </article>
-          `;
-        })
-        .join("")
-    : `
-      <article class="resource-card">
-        <p class="resource-title">Aucune ressource ne correspond aux filtres actuels.</p>
-        <p class="resource-subtitle">
-          Ajustez les filtres ou revenez à une vue plus large du catalogue.
-        </p>
+  if (!downloadEntries.length) {
+    dom.downloadList.innerHTML = `
+      <article class="empty-state">
+        Sélectionnez un ou plusieurs éléments dans l'espace d'accès aux données.
       </article>
     `;
-
-  dom.resultsList.querySelectorAll('.resource-selector input[type="checkbox"]').forEach((input) => {
-    input.addEventListener("change", () => {
-      if (input.checked) {
-        appState.selectedResourceIds.add(input.value);
-      } else {
-        appState.selectedResourceIds.delete(input.value);
-      }
-      updateSelectionUi();
-    });
-  });
-
-  dom.resultsList.querySelectorAll(".download-button").forEach((button) => {
-    button.addEventListener("click", () => {
-      const resource = resources.find((entry) => entry.id === button.dataset.resourceId);
-      const download = resource.downloads.find(
-        (entry) => entry.extension === button.dataset.format
-      );
-      const filename = `${slugify(resource.title)}-${download.extension}-demo.txt`;
-      downloadTextFile(filename, buildResourceDemo(resource, download));
-    });
-  });
-
-  const sample = filteredResources[0] || resources[0];
-  dom.metadataPreview.textContent = JSON.stringify(
-    {
-      id: sample.id,
-      titre: sample.title,
-      cycle: sample.cycle,
-      annee: sample.year,
-      portee: sample.scope,
-      pays: sample.country,
-      type: sample.type,
-      langue: sample.language,
-      statut: sample.status,
-      urlTelechargement: sample.downloads.map((download) => download.suggestedUrl),
-      dateMiseAJour: sample.updatedAt,
-      ordreAffichage: sample.order,
-    },
-    null,
-    2
-  );
-}
-
-function updateSelectionUi() {
-  const selectedCount = appState.selectedResourceIds.size;
-  dom.selectionCount.textContent = `${selectedCount} ressource${
-    selectedCount > 1 ? "s" : ""
-  } sélectionnée${selectedCount > 1 ? "s" : ""}`;
-  dom.downloadSelection.disabled = selectedCount === 0;
-}
-
-function renderPortal() {
-  dom.portalSection.classList.remove("hidden");
-  renderPortalSummary();
-  renderSpaceCards();
-  renderTreeView();
-  syncFiltersToInputs();
-  renderResults();
-  updateSelectionUi();
-}
-
-function handleAccessSubmit(event) {
-  event.preventDefault();
-  const payload = readAccessForm();
-  const validationMessage = validateAccessForm(payload);
-
-  if (validationMessage) {
-    dom.formFeedback.textContent = validationMessage;
     return;
   }
 
-  saveAccessRequest(payload);
-  renderSavedRequestPreview();
-  appState.accessRequest = payload;
-  appState.unlocked = true;
-  appState.selectedResourceIds.clear();
-  setDefaultFiltersFromRequest(payload);
-  dom.formFeedback.textContent = "Accès enregistré. Le portail de données est maintenant disponible.";
-  renderPortal();
-  dom.portalSection.scrollIntoView({ behavior: "smooth", block: "start" });
-}
+  dom.downloadList.innerHTML = downloadEntries
+    .map(
+      (entry) => `
+        <article class="download-card">
+          <div class="download-card-header">
+            <div>
+              <h3>${entry.title}</h3>
+              <p>${entry.group} · ${entry.type}</p>
+            </div>
+            <span class="status-tag ${statusClass(entry.status)}">${entry.status}</span>
+          </div>
+          <div class="download-meta">
+            ${entry.formats.map((format) => `<span class="file-tag">${format}</span>`).join("")}
+          </div>
+          <div class="download-actions">
+            ${
+              entry.status === "Disponible"
+                ? entry.formats
+                    .map(
+                      (format) => `
+                        <button
+                          type="button"
+                          class="download-button"
+                          data-download-id="${entry.id}"
+                          data-download-format="${format}"
+                        >
+                          Télécharger ${format.includes("SPSS") ? "SPSS" : format.includes("Stata") ? "Stata" : "PDF"}
+                        </button>
+                      `
+                    )
+                    .join("")
+                : `<span class="status-note">Fichier non téléchargeable pour le moment.</span>`
+            }
+          </div>
+        </article>
+      `
+    )
+    .join("");
 
-function handleGroupDownload() {
-  const selectedResources = resources.filter((resource) =>
-    appState.selectedResourceIds.has(resource.id)
-  );
-
-  if (!selectedResources.length) return;
-
-  const manifest = [
-    "titre,cycle,annee,pays,type,langue,statut,formats,url_suggeree",
-    ...selectedResources.map((resource) => {
-      const formats = resource.downloads.map((download) => download.label).join(" | ");
-      const urls = resource.downloads.map((download) => download.suggestedUrl).join(" | ");
-      return `"${resource.title}","${resource.cycle}","${resource.year}","${resource.country}","${resource.type}","${resource.language}","${resource.status}","${formats}","${urls}"`;
-    }),
-  ].join("\n");
-
-  downloadTextFile("selection-portail-pasec.csv", manifest, "text/csv;charset=utf-8");
-}
-
-function attachFilterListeners() {
-  [
-    ["cycle", dom.filterCycle],
-    ["country", dom.filterCountry],
-    ["year", dom.filterYear],
-    ["type", dom.filterType],
-    ["language", dom.filterLanguage],
-    ["status", dom.filterStatus],
-  ].forEach(([key, element]) => {
-    element.addEventListener("change", () => {
-      appState.filters[key] = element.value;
-      renderPortal();
+  dom.downloadList.querySelectorAll("[data-download-id]").forEach((button) => {
+    button.addEventListener("click", () => {
+      const entry = downloadEntries.find((item) => item.id === button.dataset.downloadId);
+      if (!entry) return;
+      downloadDemoFile(entry, button.dataset.downloadFormat);
     });
   });
-
-  dom.filterSearch.addEventListener("input", () => {
-    appState.filters.search = dom.filterSearch.value.trim();
-    renderResults();
-  });
-
-  dom.resetFilters.addEventListener("click", () => {
-    appState.filters = {
-      cycle: "all",
-      country: "all",
-      year: "all",
-      type: "all",
-      language: "all",
-      status: "all",
-      search: "",
-    };
-    renderPortal();
-  });
-
-  dom.downloadSelection.addEventListener("click", handleGroupDownload);
 }
 
-function attachFormListeners() {
-  dom.accessForm.addEventListener("change", (event) => {
-    if (event.target.name === "cycles") {
-      renderCountryOptions();
-    }
+function handleFormSubmit(event) {
+  event.preventDefault();
 
-    if (event.target === dom.allCountries) {
-      renderCountryOptions();
-    }
+  const payload = readFormPayload();
+  const errorMessage = validateForm(payload);
+
+  if (errorMessage) {
+    dom.formFeedback.textContent = errorMessage;
+    return;
+  }
+
+  appState.accessGranted = true;
+  appState.request = payload;
+  saveAccessRequest(payload);
+  dom.formFeedback.textContent = "Accès activé.";
+  renderRequestSummary();
+  renderAccessShell();
+  renderDownloads();
+}
+
+function restoreAccessRequest() {
+  const saved = localStorage.getItem("pasecAccessRequest");
+  if (!saved) return;
+
+  try {
+    appState.request = JSON.parse(saved);
+    appState.accessGranted = true;
+  } catch {
+    appState.request = null;
+    appState.accessGranted = false;
+  }
+}
+
+function attachEvents() {
+  dom.accessForm.addEventListener("submit", handleFormSubmit);
+
+  dom.goDownloads.addEventListener("click", () => {
+    dom.downloadSection.scrollIntoView({ behavior: "smooth", block: "start" });
   });
-
-  dom.accessForm.addEventListener("submit", handleAccessSubmit);
 }
 
 function initialise() {
-  renderCycleOptions();
-  renderUsageOptions();
-  renderProfileOptions();
-  renderCountryOptions();
-  renderSavedRequestPreview();
-  attachFormListeners();
-  attachFilterListeners();
-  syncFiltersToInputs();
-  renderResults();
+  restoreAccessRequest();
+  renderRequestSummary();
+  renderAccessShell();
+  renderDownloads();
+  attachEvents();
 }
 
 initialise();

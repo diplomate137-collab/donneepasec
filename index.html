@@ -7,313 +7,144 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <div class="page-glow page-glow-left" aria-hidden="true"></div>
-    <div class="page-glow page-glow-right" aria-hidden="true"></div>
-
-    <header class="hero">
-      <div class="hero-copy">
-        <p class="eyebrow">Prototype de validation fonctionnelle</p>
-        <h1>Portail d'accès aux données PASEC</h1>
-        <p class="lead">
-          Un espace unique pour qualifier les utilisateurs, explorer les cycles
-          PASEC et télécharger les ressources documentaires et bases de
-          données, y compris en formats Stata et SPSS.
-        </p>
-      </div>
-      <div class="hero-panel">
-        <p class="hero-kicker">Ce prototype permet de visualiser :</p>
-        <ul class="hero-list">
-          <li>le formulaire d'identification et de qualification ;</li>
-          <li>l'architecture PASEC2014, PASEC2019, PASEC2024 et historique ;</li>
-          <li>la navigation par arborescence et par filtres ;</li>
-          <li>le téléchargement unitaire ou groupé en mode démonstration.</li>
-        </ul>
-      </div>
+    <header class="topbar">
+      <p class="kicker">Prototype de visualisation</p>
+      <h1>Portail d'accès aux données PASEC</h1>
+      <p class="subtitle">
+        Formulaire d'accès, sélection des éléments, puis téléchargement direct.
+      </p>
     </header>
 
-    <main class="shell">
-      <section class="card intro-card">
-        <div class="section-heading">
-          <p class="section-tag">1. Finalité</p>
-          <h2>Bienvenue dans l'espace d'accès aux données du PASEC</h2>
+    <main class="layout">
+      <section class="panel form-panel">
+        <div class="panel-header">
+          <p class="panel-tag">1. Formulaire d'accès</p>
+          <h2>Identification de l'utilisateur</h2>
         </div>
-        <p>
-          Cet espace permet de consulter et télécharger les bases de données et
-          documents complets relatifs aux évaluations PASEC, selon les cycles,
-          les pays et les types de ressources disponibles.
-        </p>
-        <div class="intro-grid">
-          <article>
-            <h3>Types de ressources</h3>
-            <ul class="clean-list">
-              <li>Bases de données internationales et nationales</li>
-              <li>Questionnaires, manuels et documentation technique</li>
-              <li>Documents méthodologiques et ressources historiques</li>
-            </ul>
-          </article>
-          <article>
-            <h3>Règles d'accès</h3>
-            <ul class="clean-list">
-              <li>Formulaire d'identification obligatoire</li>
-              <li>Accès immédiat après enregistrement local de la demande</li>
-              <li>Statuts de publication : Disponible, À venir, Restreint</li>
-            </ul>
-          </article>
-          <article>
-            <h3>Formats pris en charge</h3>
-            <ul class="clean-list">
-              <li>Données : SPSS (.sav) et Stata (.dta)</li>
-              <li>Documentation : PDF, ZIP et notices techniques</li>
-              <li>Liens réels remplaçables ensuite par le prestataire</li>
-            </ul>
-          </article>
-        </div>
-      </section>
 
-      <section class="access-layout">
-        <section class="card access-card">
-          <div class="section-heading">
-            <p class="section-tag">2. Formulaire d'accès</p>
-            <h2>Accès aux données et documents complets des évaluations PASEC</h2>
-          </div>
-          <form id="access-form" novalidate>
-            <div class="form-grid">
-              <label>
-                <span>Nom</span>
-                <input type="text" name="lastName" required />
-              </label>
-              <label>
-                <span>Prénom</span>
-                <input type="text" name="firstName" required />
-              </label>
-              <label>
-                <span>Institution / organisation</span>
-                <input type="text" name="institution" required />
-              </label>
-              <label>
-                <span>Fonction</span>
-                <input type="text" name="jobTitle" required />
-              </label>
-              <label>
-                <span>Pays de résidence</span>
-                <input type="text" name="residenceCountry" required />
-              </label>
-              <label>
-                <span>Adresse e-mail</span>
-                <input type="email" name="email" required />
-              </label>
-            </div>
-
-            <fieldset class="fieldset">
-              <legend>Quel espace de données PASEC souhaitez-vous consulter ?</legend>
-              <p class="field-help">
-                Sélection multiple autorisée pour une recherche transversale.
-              </p>
-              <div id="cycle-options" class="pill-grid"></div>
-            </fieldset>
-
-            <fieldset class="fieldset">
-              <legend>Pour quels pays souhaitez-vous accéder aux données PASEC ?</legend>
-              <p class="field-help">
-                L'accès international est proposé en premier, puis la liste des
-                pays s'adapte automatiquement au cycle choisi.
-              </p>
-              <label class="checkbox-line">
-                <input type="checkbox" id="all-countries" />
-                <span>Tous les pays</span>
-              </label>
-              <div id="country-options" class="country-options-container"></div>
-            </fieldset>
-
-            <fieldset class="fieldset">
-              <legend>Quel sera l'usage des données et/ou documents PASEC ?</legend>
-              <p class="field-help">
-                Veuillez sélectionner toutes les options pertinentes.
-              </p>
-              <div id="usage-options" class="checkbox-grid"></div>
-              <label>
-                <span>Autre usage</span>
-                <input
-                  type="text"
-                  id="other-usage"
-                  name="otherUsage"
-                  placeholder="Précisez si nécessaire"
-                />
-              </label>
-            </fieldset>
-
-            <div class="form-grid compact">
-              <label>
-                <span>Statut ou fonction principale</span>
-                <select name="profile" id="profile-select" required>
-                  <option value="">Sélectionner un profil</option>
-                </select>
-              </label>
-              <label>
-                <span>Autre profil</span>
-                <input
-                  type="text"
-                  id="other-profile"
-                  name="otherProfile"
-                  placeholder="Précisez si nécessaire"
-                />
-              </label>
-            </div>
-
-            <label class="consent-line">
-              <input type="checkbox" name="consent" required />
-              <span>
-                Je m'engage à utiliser les données et documents du PASEC
-                conformément aux conditions d'utilisation définies par la
-                CONFEMEN / le PASEC.
-              </span>
+        <form id="access-form" novalidate>
+          <div class="form-grid">
+            <label>
+              <span>Nom</span>
+              <input type="text" name="lastName" required />
             </label>
-
-            <div class="form-actions">
-              <button type="submit" class="primary-button">
-                Accéder aux données
-              </button>
-              <p id="form-feedback" class="feedback" aria-live="polite"></p>
-            </div>
-          </form>
-        </section>
-
-        <aside class="card preview-card">
-          <div class="section-heading">
-            <p class="section-tag">3. Validation rapide</p>
-            <h2>Ce que ce prototype démontre</h2>
+            <label>
+              <span>Prénom</span>
+              <input type="text" name="firstName" required />
+            </label>
+            <label>
+              <span>Institution / organisation</span>
+              <input type="text" name="institution" required />
+            </label>
+            <label>
+              <span>Fonction</span>
+              <input type="text" name="jobTitle" required />
+            </label>
+            <label>
+              <span>Pays de résidence</span>
+              <input type="text" name="residenceCountry" required />
+            </label>
+            <label>
+              <span>Adresse e-mail</span>
+              <input type="email" name="email" required />
+            </label>
+            <label>
+              <span>Usage prévu</span>
+              <select name="usage" required>
+                <option value="">Sélectionner</option>
+                <option value="Revue documentaire / consultation">
+                  Revue documentaire / consultation
+                </option>
+                <option value="Utilisation dans une publication">
+                  Utilisation dans une publication
+                </option>
+                <option value="Analyse secondaire de données">
+                  Analyse secondaire de données
+                </option>
+                <option value="Mémoire ou thèse">Mémoire ou thèse</option>
+                <option value="Appui à la décision">
+                  Appui à la décision / politique publique
+                </option>
+                <option value="Usage pédagogique">
+                  Usage pédagogique ou universitaire
+                </option>
+                <option value="Autre">Autre</option>
+              </select>
+            </label>
+            <label>
+              <span>Profil utilisateur</span>
+              <select name="profile" required>
+                <option value="">Sélectionner</option>
+                <option value="Décideur politique">Décideur politique</option>
+                <option value="Chercheur">Chercheur</option>
+                <option value="Enseignant-chercheur / universitaire">
+                  Enseignant-chercheur / universitaire
+                </option>
+                <option value="Étudiant">Étudiant</option>
+                <option value="Enseignant">Enseignant</option>
+                <option value="Consultant / expert">Consultant / expert</option>
+                <option value="Partenaire technique et financier">
+                  Partenaire technique et financier
+                </option>
+                <option value="Autre">Autre</option>
+              </select>
+            </label>
           </div>
-          <div class="preview-badges">
-            <span class="badge badge-teal">Catalogue métadonnées</span>
-            <span class="badge badge-gold">Formats SPSS / Stata</span>
-            <span class="badge badge-sand">Téléchargement groupé</span>
-          </div>
-          <ul class="clean-list">
-            <li>Catalogue généré à partir de fiches ressources structurées</li>
-            <li>Filtres par cycle, pays, année, type, langue et statut</li>
-            <li>Statuts de disponibilité intégrés pour PASEC2024</li>
-            <li>Historique géré par pays puis année</li>
-          </ul>
 
-          <div class="summary-block">
-            <h3>Dernière demande enregistrée</h3>
-            <div id="saved-request-preview" class="saved-request">
-              Aucune demande enregistrée localement pour le moment.
-            </div>
-          </div>
+          <label class="consent-line">
+            <input type="checkbox" name="consent" required />
+            <span>
+              Je m'engage à utiliser les données et documents du PASEC
+              conformément aux conditions d'utilisation.
+            </span>
+          </label>
 
-          <div class="summary-block">
-            <h3>Formats de téléchargement prévus</h3>
-            <div class="download-format-grid">
-              <span class="mini-chip">SPSS (.sav)</span>
-              <span class="mini-chip">Stata (.dta)</span>
-              <span class="mini-chip">PDF (.pdf)</span>
-              <span class="mini-chip">ZIP (.zip)</span>
-            </div>
+          <div class="form-actions">
+            <button type="submit" class="primary-button">
+              Valider et accéder
+            </button>
+            <p id="form-feedback" class="feedback" aria-live="polite"></p>
           </div>
-        </aside>
+        </form>
       </section>
 
-      <section id="portal-section" class="portal-section hidden">
-        <div class="portal-header">
+      <section class="panel access-panel">
+        <div class="panel-header panel-header-inline">
           <div>
-            <p class="section-tag">4. Portail principal</p>
-            <h2>Catalogue des données PASEC</h2>
+            <p class="panel-tag">2. Espace d'accès aux données</p>
+            <h2>Sélection des éléments</h2>
           </div>
-          <div id="portal-summary" class="portal-summary"></div>
+          <button
+            type="button"
+            id="go-downloads"
+            class="primary-button"
+            disabled
+          >
+            Ouvrir l'espace de téléchargement
+          </button>
         </div>
 
-        <section class="space-grid" id="space-grid"></section>
+        <div id="request-summary" class="request-summary">
+          Remplissez le formulaire pour activer cet espace.
+        </div>
 
-        <div class="portal-layout">
-          <aside class="card tree-card">
-            <div class="panel-heading">
-              <h3>Navigation par arborescence</h3>
-              <p>Cycle, pays, année et niveau d'accès.</p>
-            </div>
-            <div id="tree-view" class="tree-view"></div>
-          </aside>
+        <div id="access-shell" class="access-shell locked"></div>
+      </section>
 
-          <div class="catalog-column">
-            <section class="card filters-card">
-              <div class="panel-heading">
-                <h3>Recherche par filtres</h3>
-                <p>Affinez rapidement l'affichage des ressources.</p>
-              </div>
-              <div class="filter-grid">
-                <label>
-                  <span>Cycle</span>
-                  <select id="filter-cycle"></select>
-                </label>
-                <label>
-                  <span>Pays</span>
-                  <select id="filter-country"></select>
-                </label>
-                <label>
-                  <span>Année</span>
-                  <select id="filter-year"></select>
-                </label>
-                <label>
-                  <span>Type de ressource</span>
-                  <select id="filter-type"></select>
-                </label>
-                <label>
-                  <span>Langue</span>
-                  <select id="filter-language"></select>
-                </label>
-                <label>
-                  <span>Statut</span>
-                  <select id="filter-status"></select>
-                </label>
-                <label class="search-field">
-                  <span>Recherche libre</span>
-                  <input
-                    type="search"
-                    id="filter-search"
-                    placeholder="Titre, pays, cycle..."
-                  />
-                </label>
-              </div>
-              <div class="filter-actions">
-                <button type="button" id="reset-filters" class="secondary-button">
-                  Réinitialiser les filtres
-                </button>
-                <button
-                  type="button"
-                  id="download-selection"
-                  class="primary-button"
-                  disabled
-                >
-                  Télécharger la sélection
-                </button>
-              </div>
-              <div id="status-stats" class="status-stats"></div>
-            </section>
-
-            <section class="card results-card">
-              <div class="results-header">
-                <div>
-                  <h3>Résultats</h3>
-                  <p id="results-count">0 ressource</p>
-                </div>
-                <p id="selection-count" class="selection-count">
-                  0 ressource sélectionnée
-                </p>
-              </div>
-              <div id="results-list" class="results-list"></div>
-            </section>
-
-            <section class="card metadata-card">
-              <div class="panel-heading">
-                <h3>Aperçu back-office</h3>
-                <p>
-                  Exemple de fiche ressource basée sur les métadonnées du
-                  catalogue.
-                </p>
-              </div>
-              <pre id="metadata-preview" class="metadata-preview"></pre>
-            </section>
+      <section id="download-section" class="panel download-panel">
+        <div class="panel-header panel-header-inline">
+          <div>
+            <p class="panel-tag">3. Téléchargement</p>
+            <h2>Fichiers sélectionnés</h2>
           </div>
+          <p id="download-count" class="download-count">0 fichier</p>
+        </div>
+
+        <div id="download-list" class="download-list">
+          <article class="empty-state">
+            Sélectionnez un ou plusieurs éléments dans l'espace d'accès aux
+            données.
+          </article>
         </div>
       </section>
     </main>
